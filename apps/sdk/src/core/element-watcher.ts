@@ -1,5 +1,5 @@
 import { isVisibleNode } from '@usertour-packages/dom';
-import { finderV2 } from '@usertour-packages/finder';
+import { finderV2WithIframes } from '@usertour-packages/finder';
 import { ElementSelectorPropsData } from '@usertour/types';
 import { isVisible } from '../utils/conditions';
 import { AppEvents } from '../utils/event';
@@ -224,6 +224,7 @@ export class ElementWatcher extends Evented {
     if (!document?.body) {
       return null;
     }
-    return finderV2(this.target, document.body);
+    const result = finderV2WithIframes(this.target, document);
+    return result?.element || null;
   }
 }
